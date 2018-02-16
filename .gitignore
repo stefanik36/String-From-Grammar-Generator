@@ -2,6 +2,9 @@
 /build/
 /bin/
 
+# idea files
+String-From-Grammar-Generator.*
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
