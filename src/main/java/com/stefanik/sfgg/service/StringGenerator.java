@@ -17,8 +17,7 @@ public class StringGenerator {
         this.grammar = grammar;
         this.parseStrategy = parseStrategy;
     }
-
-
+    
     public String generate() throws InvalidGrammar {
         String ss = grammar.getStartSymbol();
         List<String> terminals = grammar.getTerminals();
@@ -64,7 +63,7 @@ public class StringGenerator {
     private void checkResult(String result, List<String> terminals) throws InvalidGrammar {
         Pattern pattern = getPattern(terminals);
         Matcher matcher = pattern.matcher(result);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             throw new InvalidGrammar("Unknown symbol. Check terminal symbols.");
         }
 

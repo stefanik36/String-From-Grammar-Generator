@@ -40,11 +40,11 @@ public class GrammarBuilder {
     }
 
     public Grammar build() throws InvalidGrammar {
-        chceckGrammar();
+        checkGrammar();
         return new Grammar(this);
     }
 
-    private void chceckGrammar() throws InvalidGrammar {
+    private void checkGrammar() throws InvalidGrammar {
         if (terminals == null) {
             throw new InvalidGrammar("Terminals unknown.");
         }
