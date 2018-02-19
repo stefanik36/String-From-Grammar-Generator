@@ -1,10 +1,11 @@
 .gradle
 /build/
 /bin/
+/out/
 
 
 # idea files
-.idea/
+/.idea/
 *.iml
 *.ipr
 *.iws
