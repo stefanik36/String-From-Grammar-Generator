@@ -1,18 +1,15 @@
 package com.stefanik.sfgg.model;
 
-import com.stefanik.sfgg.model.Transformations;
 import com.stefanik.sfgg.service.GrammarBuilder;
 
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class Grammar {
 
     private List<String> terminals;
     private List<String> nonTerminals;
     private String startSymbol;
-    private Transformations transformations;
+    private List<Transformation> transformations;
 
     public Grammar(GrammarBuilder gb) {
         this.terminals = gb.getTerminals();
@@ -29,7 +26,7 @@ public class Grammar {
         return nonTerminals;
     }
 
-    public Transformations getTransformations() {
+    public List<Transformation> getTransformations() {
         return transformations;
     }
 

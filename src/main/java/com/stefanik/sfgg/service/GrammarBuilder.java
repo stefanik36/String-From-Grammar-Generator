@@ -1,7 +1,7 @@
 package com.stefanik.sfgg.service;
 
 import com.stefanik.sfgg.model.Grammar;
-import com.stefanik.sfgg.model.Transformations;
+import com.stefanik.sfgg.model.Transformation;
 import com.stefanik.sfgg.util.InvalidGrammar;
 
 import java.util.ArrayList;
@@ -11,19 +11,19 @@ public class GrammarBuilder {
     private List<String> terminals;
     private List<String> nonTerminals;
     private String startSymbol;
-    private Transformations transformations;
+    private List<Transformation> transformations;
 
     public GrammarBuilder(List<String> terminals) {
         this.terminals = terminals;
     }
 
     public GrammarBuilder withNonTerminals(List<String> nonTerminals) throws InvalidGrammar {
-        checkCollisons(nonTerminals);
+        checkCollisions(nonTerminals);
         this.nonTerminals = nonTerminals;
         return this;
     }
 
-    private void checkCollisons(List<String> nonTerminals) throws InvalidGrammar {
+    private void checkCollisions(List<String> nonTerminals) throws InvalidGrammar {
         if (terminals.stream().anyMatch(t -> nonTerminals.stream().anyMatch(nt -> t.equals(nt)))) {
             throw new InvalidGrammar("Terminal the same as non terminal.");
         }
@@ -34,17 +34,17 @@ public class GrammarBuilder {
         return this;
     }
 
-    public GrammarBuilder withTransformations(Transformations transformations) {
+    public GrammarBuilder withTransformations(List<Transformation> transformations) {
         this.transformations = transformations;
         return this;
     }
 
     public Grammar build() throws InvalidGrammar {
-        resolveNulls();
+        chceckGrammar();
         return new Grammar(this);
     }
 
-    private void resolveNulls() throws InvalidGrammar {
+    private void chceckGrammar() throws InvalidGrammar {
         if (terminals == null) {
             throw new InvalidGrammar("Terminals unknown.");
         }
@@ -55,7 +55,10 @@ public class GrammarBuilder {
             nonTerminals = new ArrayList<>();
         }
         if (transformations == null) {
-            transformations = new Transformations();
+            transformations = new ArrayList<>();
+        }
+        if (!(terminals.contains(startSymbol) || nonTerminals.contains(startSymbol))) {
+            throw new InvalidGrammar("Wrong start symbol.");
         }
     }
 
@@ -71,7 +74,7 @@ public class GrammarBuilder {
         return startSymbol;
     }
 
-    public Transformations getTransformations() {
+    public List<Transformation> getTransformations() {
         return transformations;
     }
 }
