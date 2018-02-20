@@ -2,7 +2,6 @@ package com.stefanik.sfgg.service.ParseMethods;
 
 import com.stefanik.sfgg.model.Transformation;
 import com.stefanik.sfgg.model.Tuple;
-import com.stefanik.sfgg.util.InvalidGrammar;
 
 import java.util.Comparator;
 import java.util.List;

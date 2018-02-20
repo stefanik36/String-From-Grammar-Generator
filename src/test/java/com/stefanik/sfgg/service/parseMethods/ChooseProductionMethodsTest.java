@@ -1,10 +1,7 @@
 package com.stefanik.sfgg.service.parseMethods;
 
 import com.stefanik.sfgg.model.Transformation;
-import com.stefanik.sfgg.model.Tuple;
 import com.stefanik.sfgg.service.ParseMethods.ChooseProductionMethods;
-import com.stefanik.sfgg.service.ParseMethods.ParseStringMethods;
-import com.stefanik.sfgg.util.InvalidGrammar;
 import org.junit.Test;
 
 import java.util.Arrays;

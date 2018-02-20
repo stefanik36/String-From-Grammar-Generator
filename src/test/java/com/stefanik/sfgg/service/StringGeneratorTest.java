@@ -5,7 +5,7 @@ import com.stefanik.sfgg.model.ParseStrategy;
 import com.stefanik.sfgg.model.Transformation;
 import com.stefanik.sfgg.service.ParseMethods.ChooseProductionMethods;
 import com.stefanik.sfgg.service.ParseMethods.ParseStringMethods;
-import com.stefanik.sfgg.util.InvalidGrammar;
+import com.stefanik.sfgg.util.InvalidGrammarException;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -16,7 +16,7 @@ public class StringGeneratorTest {
     private static final String EPSILON = "";
 
     @Test
-    public void generateTest01() throws InvalidGrammar {
+    public void generateTest01() throws InvalidGrammarException {
         Grammar g = new GrammarBuilder(Arrays.asList("a"))
                 .withNonTerminals(Arrays.asList("S", "X", "Y"))
                 .withStartSymbol("S")
@@ -36,7 +36,7 @@ public class StringGeneratorTest {
 
 
     @Test
-    public void generateTest02() throws InvalidGrammar {
+    public void generateTest02() throws InvalidGrammarException {
         Grammar g = new GrammarBuilder(Arrays.asList("a","b","c"))
                 .withNonTerminals(Arrays.asList("S", "X", "Y"))
                 .withStartSymbol("S")
@@ -54,8 +54,8 @@ public class StringGeneratorTest {
         assertEquals("abcaaabcaabcabcabcaaabcaabcaabcaaabcaabcbcabc", s);
     }
 
-    @Test(expected = InvalidGrammar.class)
-    public void generateTest03() throws InvalidGrammar {
+    @Test(expected = InvalidGrammarException.class)
+    public void generateTest03() throws InvalidGrammarException {
         Grammar g = new GrammarBuilder(Arrays.asList("a","b"))
                 .withNonTerminals(Arrays.asList("S"))
                 .withStartSymbol("S")

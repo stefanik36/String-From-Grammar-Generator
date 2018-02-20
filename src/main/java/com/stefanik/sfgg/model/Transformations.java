@@ -1,11 +1,5 @@
 package com.stefanik.sfgg.model;
 
-import com.stefanik.sfgg.util.InvalidGrammar;
-
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
-
 public class Transformations {
 //    private List<Transformation> transformations;
 //
@@ -33,12 +27,12 @@ public class Transformations {
 //        return keys;
 //    }
 //
-//    public Transformation get(String key) throws InvalidGrammar {
+//    public Transformation get(String key) throws InvalidGrammarException {
 //        Optional<Transformation> transformation = transformations
 //                .stream()
 //                .filter(t -> t.getKey().equals(key)).findFirst();
 //        if (!transformation.isPresent()) {
-//            throw new InvalidGrammar("Transformation with key " + key + " does not exists.");
+//            throw new InvalidGrammarException("Transformation with key " + key + " does not exists.");
 //        }
 //        return transformation.get();
 //    }
