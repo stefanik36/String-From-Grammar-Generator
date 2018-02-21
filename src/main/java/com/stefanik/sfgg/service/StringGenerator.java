@@ -1,7 +1,7 @@
 package com.stefanik.sfgg.service;
 
 import com.stefanik.sfgg.model.*;
-import com.stefanik.sfgg.util.InvalidGrammar;
+import com.stefanik.sfgg.util.InvalidGrammarException;
 
 import java.util.List;
 import java.util.function.BiFunction;
@@ -17,8 +17,8 @@ public class StringGenerator {
         this.grammar = grammar;
         this.parseStrategy = parseStrategy;
     }
-    
-    public String generate() throws InvalidGrammar {
+
+    public String generate() throws InvalidGrammarException {
         String ss = grammar.getStartSymbol();
         List<String> terminals = grammar.getTerminals();
         List<String> nonTerminals = grammar.getNonTerminals();
@@ -36,7 +36,7 @@ public class StringGenerator {
                     modify(sb, keyTuple.getR(), t.getKey().length(), production);
                 }
             } else {
-                throw new InvalidGrammar("Cannot replace non terminal word. " +
+                throw new InvalidGrammarException("Cannot replace non terminal word. " +
                         "Needed transformation do not exists.");
             }
         }
@@ -60,26 +60,13 @@ public class StringGenerator {
                 .collect(Collectors.toList());
     }
 
-    private void checkResult(String result, List<String> terminals) throws InvalidGrammar {
-        Pattern pattern = getPattern(terminals);
+    private void checkResult(String result, List<String> terminals) throws InvalidGrammarException {
+        Pattern pattern = new PatternBuilder(terminals).build();
         Matcher matcher = pattern.matcher(result);
         if (!matcher.matches()) {
-            throw new InvalidGrammar("Unknown symbol. Check terminal symbols.");
+            throw new InvalidGrammarException("Unknown symbol. Check terminal symbols.");
         }
 
-    }
-
-    private Pattern getPattern(List<String> terminals) {
-        StringBuilder sb = new StringBuilder("^(");
-        for (int i = 0; i < terminals.size(); i++) {
-            sb.append(terminals.get(i));
-            if (i < terminals.size() - 1) {
-                sb.append("|");
-            }
-        }
-        sb.append(")*$");
-        Pattern pattern = Pattern.compile(sb.toString());
-        return pattern;
     }
 
 }

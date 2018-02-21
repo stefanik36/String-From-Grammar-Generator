@@ -2,7 +2,7 @@ package com.stefanik.sfgg.service;
 
 import com.stefanik.sfgg.model.Grammar;
 import com.stefanik.sfgg.model.Transformation;
-import com.stefanik.sfgg.util.InvalidGrammar;
+import com.stefanik.sfgg.util.InvalidGrammarException;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class GrammarBuilderTest {
 
 
     @Test
-    public void buildTest01() throws InvalidGrammar {
+    public void buildTest01() throws InvalidGrammarException {
         Grammar g = new GrammarBuilder(Arrays.asList("a", "b"))
                 .withNonTerminals(Arrays.asList("A"))
                 .withStartSymbol("A")
@@ -36,8 +36,8 @@ public class GrammarBuilderTest {
         ));
     }
 
-    @Test(expected = InvalidGrammar.class)
-    public void buildTest02() throws InvalidGrammar {
+    @Test(expected = InvalidGrammarException.class)
+    public void buildTest02() throws InvalidGrammarException {
         new GrammarBuilder(Arrays.asList("a", "b"))
                 .withNonTerminals(Arrays.asList("A"))
                 .withStartSymbol("B")
