@@ -3,8 +3,8 @@ package com.stefanik.sfgg.service;
 import com.stefanik.sfgg.model.Grammar;
 import com.stefanik.sfgg.model.ParseStrategy;
 import com.stefanik.sfgg.model.Transformation;
-import com.stefanik.sfgg.service.ParseMethods.ChooseProductionMethods;
-import com.stefanik.sfgg.service.ParseMethods.ParseStringMethods;
+import com.stefanik.sfgg.service.ParseMethod.ChooseProductionMethod;
+import com.stefanik.sfgg.service.ParseMethod.ParseStringMethod;
 import com.stefanik.sfgg.util.InvalidGrammarException;
 import org.junit.Test;
 
@@ -27,7 +27,7 @@ public class StringGeneratorTest {
                                 new Transformation("Y", Arrays.asList(EPSILON))
                         ))
                 ).build();
-        ParseStrategy ps = new ParseStrategy(ParseStringMethods.LEFT, ChooseProductionMethods.LEFT);
+        ParseStrategy ps = new ParseStrategy(ParseStringMethod.LEFT, ChooseProductionMethod.LEFT);
 
         StringGenerator sg = new StringGenerator(g, ps);
         String s = sg.generate();
@@ -47,7 +47,7 @@ public class StringGeneratorTest {
                                 new Transformation("Y", Arrays.asList("abc"))
                         ))
                 ).build();
-        ParseStrategy ps = new ParseStrategy(ParseStringMethods.LEFT, ChooseProductionMethods.LEFT);
+        ParseStrategy ps = new ParseStrategy(ParseStringMethod.LEFT, ChooseProductionMethod.LEFT);
 
         StringGenerator sg = new StringGenerator(g, ps);
         String s = sg.generate();
@@ -64,7 +64,7 @@ public class StringGeneratorTest {
                                 new Transformation("S", Arrays.asList("abc"))
                         ))
                 ).build();
-        ParseStrategy ps = new ParseStrategy(ParseStringMethods.LEFT, ChooseProductionMethods.LEFT);
+        ParseStrategy ps = new ParseStrategy(ParseStringMethod.LEFT, ChooseProductionMethod.LEFT);
 
         StringGenerator sg = new StringGenerator(g, ps);
         sg.generate();

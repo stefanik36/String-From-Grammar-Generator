@@ -17,7 +17,7 @@ public class StringGenerator {
         this.grammar = grammar;
         this.parseStrategy = parseStrategy;
     }
-    
+
     public String generate() throws InvalidGrammarException {
         String ss = grammar.getStartSymbol();
         List<String> terminals = grammar.getTerminals();
@@ -61,25 +61,12 @@ public class StringGenerator {
     }
 
     private void checkResult(String result, List<String> terminals) throws InvalidGrammarException {
-        Pattern pattern = getPattern(terminals);
+        Pattern pattern = new PatternBuilder(terminals).build();
         Matcher matcher = pattern.matcher(result);
         if (!matcher.matches()) {
             throw new InvalidGrammarException("Unknown symbol. Check terminal symbols.");
         }
 
-    }
-
-    private Pattern getPattern(List<String> terminals) {
-        StringBuilder sb = new StringBuilder("^(");
-        for (int i = 0; i < terminals.size(); i++) {
-            sb.append(terminals.get(i));
-            if (i < terminals.size() - 1) {
-                sb.append("|");
-            }
-        }
-        sb.append(")*$");
-        Pattern pattern = Pattern.compile(sb.toString());
-        return pattern;
     }
 
 }
