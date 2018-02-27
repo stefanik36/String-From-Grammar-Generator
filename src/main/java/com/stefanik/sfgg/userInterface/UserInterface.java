@@ -1,21 +1,21 @@
 package com.stefanik.sfgg.userInterface;
 
-import com.stefanik.sfgg.Configuration;
 import com.stefanik.sfgg.model.Grammar;
 import com.stefanik.sfgg.model.ParseStrategy;
 import com.stefanik.sfgg.service.GrammarBuilder;
 import com.stefanik.sfgg.service.ParseMethod.ChooseProductionMethod;
 import com.stefanik.sfgg.service.ParseMethod.ParseStringMethod;
 import com.stefanik.sfgg.service.StringGenerator;
-import com.stefanik.sfgg.userInterface.collector.NonTerminalCollector;
-import com.stefanik.sfgg.userInterface.collector.ProductionCollector;
-import com.stefanik.sfgg.userInterface.collector.StartSymbolCollector;
-import com.stefanik.sfgg.userInterface.collector.TerminalCollector;
+import com.stefanik.sfgg.userInterface.collector.NoResultsCollector;
+import com.stefanik.sfgg.userInterface.collector.grammarInformationCollector.NonTerminalCollector;
+import com.stefanik.sfgg.userInterface.collector.grammarInformationCollector.ProductionCollector;
+import com.stefanik.sfgg.userInterface.collector.grammarInformationCollector.StartSymbolCollector;
+import com.stefanik.sfgg.userInterface.collector.grammarInformationCollector.TerminalCollector;
 import com.stefanik.sfgg.util.InvalidGrammarException;
+import com.stefanik.sfgg.util.InvalidInputException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import static com.stefanik.sfgg.Configuration.TERMINAL_CHAR;
 import static com.stefanik.sfgg.Configuration.NONTERMINAL_CHAR;
@@ -24,26 +24,30 @@ import static com.stefanik.sfgg.Configuration.START_SYMBOL_CHAR;
 
 public class UserInterface {
 
-    private Scanner scanner = new Scanner(System.in);
-    private static final int NO_RESULTS = 100;
-
     public void start() {
         showHeader();
         GrammarBuilder gb = new GrammarBuilder();
         try {
             Grammar grammar = getGrammar(gb);
-            ParseStrategy parseStrategy = getParseStrategy();
+            ParseStrategy parseStrategy = getDefaultParseStrategy();
             StringGenerator sg = new StringGenerator(grammar, parseStrategy);
-            List<String> result = getResult(sg);
+            int noResults = getNoResults();
+            List<String> result = getResult(sg, noResults);
             showResult(result);
         } catch (InvalidGrammarException e) {
+            e.printStackTrace();
+        } catch (InvalidInputException e) {
             e.printStackTrace();
         }
     }
 
-    private List<String> getResult(StringGenerator sg) throws InvalidGrammarException {
+    public int getNoResults() throws InvalidInputException {
+        return new NoResultsCollector().getNoResults();
+    }
+
+    private List<String> getResult(StringGenerator sg, int noResults) throws InvalidGrammarException {
         List<String> result = new ArrayList<>();
-        for (int i = 0; i < NO_RESULTS; i++) {
+        for (int i = 0; i < noResults; i++) {
             result.add(sg.generate());
         }
         return result;
@@ -55,7 +59,7 @@ public class UserInterface {
         System.out.println("------------------");
     }
 
-    private ParseStrategy getParseStrategy() {
+    private ParseStrategy getDefaultParseStrategy() {
         return new ParseStrategy(ParseStringMethod.RANDOM, ChooseProductionMethod.RANDOM);
     }
 
