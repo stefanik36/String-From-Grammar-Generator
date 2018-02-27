@@ -66,23 +66,31 @@ Set terminal symbols [Ʃ] (type "\next" to next step):
 
 > S     _[enter]_
 
-```Set productions rules [P] (type "\next" to next step):
-production key: ```
+```
+Set productions rules [P] (type "\next" to next step):
+production key:
+```
 
 > S     _[enter]_
 
-```production values (type "\next" to next production): 
-S -> ```
+```
+production values (type "\next" to next production): 
+S ->
+```
 
 > aBSc    _[enter]_
 
-```production values (type "\next" to next production): 
-S -> aBSc```
+```
+production values (type "\next" to next production): 
+S -> aBSc
+```
 
 > abc    _[enter]_
 
-```production values (type "\next" to next production): 
-S -> aBSc | abc```
+```
+production values (type "\next" to next production): 
+S -> aBSc | abc
+```
 
 > \next    _[enter]_
 
@@ -90,30 +98,38 @@ S -> aBSc | abc```
 
 > Ba    _[enter]_
 
-```S -> aBSc | abc
+```
+S -> aBSc | abc
 production values (type "\next" to next production): 
-Ba -> ```
+Ba ->
+```
 
 > aB    _[enter]_
 
-```production values (type "\next" to next production): 
-Ba -> aB```
+```
+production values (type "\next" to next production): 
+Ba -> aB
+```
 
 > \next    _[enter]_
 
-```production key: ```
+```production key:```
 
 > Bb    _[enter]_
 
-```S -> aBSc | abc
+```
+S -> aBSc | abc
 Ba -> aB
 production values (type "\next" to next production): 
-Bb -> ```
+Bb -> 
+```
 
 > bb    _[enter]_
 
-```production values (type "\next" to next production): 
-Bb -> bb```
+```
+production values (type "\next" to next production): 
+Bb -> bb
+```
 
 > \next    _[enter]_
 
@@ -125,11 +141,13 @@ Bb -> bb```
 
 > 3    _[enter]_
 
-```------------------
+```
+------------------
  [3] aabbcc
  [6] aaabbbccc
  [3] abc
-------------------```
+------------------
+```
 
 In result: [X], X is the string length.
 
