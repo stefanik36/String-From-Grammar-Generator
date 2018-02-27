@@ -11,6 +11,14 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'application'
+
+mainClassName = "com.stefanik.sfgg.Main"
+
+run{
+ standardInput = System.in
+}
+
 
 // In this section you declare where to find the dependencies of your project
 repositories {
