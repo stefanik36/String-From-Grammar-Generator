@@ -10,6 +10,7 @@ Default parse strategy is **random**.
 
 ## Examples:
 
+### example 1:
 ```
 L(G) = {a^n b^n c^n | n≥1}
 G(N,Ʃ,P,S)
