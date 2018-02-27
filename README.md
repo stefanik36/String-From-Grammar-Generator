@@ -143,8 +143,8 @@ Bb -> bb
 
 ```
 ------------------
- [3] aabbcc
- [6] aaabbbccc
+ [6] aabbcc
+ [9] aaabbbccc
  [3] abc
 ------------------
 ```
