@@ -20,7 +20,7 @@ public class ProductionCollector extends SymbolCollector {
         while (true) {
             System.out.print("production key: ");
             String input = scanner.nextLine();
-            if (!"".equals(input)) {
+            if (!TO_NEXT_STEP_STRING.equals(input)) {
                 addProduction(gb, input);
             } else {
                 break;
@@ -34,10 +34,10 @@ public class ProductionCollector extends SymbolCollector {
         List<String> values = new ArrayList<>();
         Transformation p = new Transformation(key, values);
         while (true) {
-            System.out.println("production values (empty string (enter) to next production): ");
+            System.out.println("production values (type \""+TO_NEXT_STEP_STRING+"\" to next production): ");
             System.out.println(p);
             String input = scanner.nextLine();
-            if (!"".equals(input)) {
+            if (!TO_NEXT_STEP_STRING.equals(input)) {
                 values.add(input);
             } else {
                 break;

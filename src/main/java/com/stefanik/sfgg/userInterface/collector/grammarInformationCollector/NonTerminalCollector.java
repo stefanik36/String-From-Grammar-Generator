@@ -15,7 +15,7 @@ public class NonTerminalCollector extends SymbolCollector {
     protected void doCollect(GrammarBuilder gb) throws InvalidGrammarException {
         while (true) {
             String input = scanner.nextLine();
-            if (!"".equals(input)) {
+            if (!TO_NEXT_STEP_STRING.equals(input)) {
                 addAndShow(gb, input);
             } else {
                 break;

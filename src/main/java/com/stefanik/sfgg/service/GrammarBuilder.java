@@ -113,7 +113,7 @@ public class GrammarBuilder {
         if (!transformations.stream().allMatch(
                 t -> t.getValues()
                         .stream()
-                        .allMatch(v -> p.matcher(v).matches()))) {
+                        .allMatch(v -> p.matcher(v).matches() || v.length() == 0))) {
             throw new InvalidGrammarException("Production value contains unknown symbol.");
         }
     }

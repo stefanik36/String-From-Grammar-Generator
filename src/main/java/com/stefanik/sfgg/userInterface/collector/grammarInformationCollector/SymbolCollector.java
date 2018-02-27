@@ -9,6 +9,7 @@ import java.util.Scanner;
 public abstract class SymbolCollector implements Collector {
 
     protected final Scanner scanner = new Scanner(System.in);
+    protected final String TO_NEXT_STEP_STRING = "\\next";
 
     @Override
     public void collect(GrammarBuilder gb) throws InvalidGrammarException {
@@ -21,7 +22,7 @@ public abstract class SymbolCollector implements Collector {
         prompt.append(getSymbol());
         prompt.append(" [" + getCharacter() + "]");
         if (hasSteps()) {
-            prompt.append(" (empty string (enter) to next step)");
+            prompt.append(" (type \""+TO_NEXT_STEP_STRING+"\" to next step)");
         }
         prompt.append(":");
         System.out.println(prompt.toString());
