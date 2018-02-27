@@ -1,4 +1,4 @@
-package com.stefanik.sfgg.userInterface.collector;
+package com.stefanik.sfgg.userInterface.collector.grammarInformationCollector;
 
 import com.stefanik.sfgg.service.GrammarBuilder;
 import com.stefanik.sfgg.util.InvalidGrammarException;

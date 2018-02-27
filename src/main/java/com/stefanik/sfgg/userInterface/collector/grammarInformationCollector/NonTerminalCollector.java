@@ -1,15 +1,14 @@
-package com.stefanik.sfgg.userInterface.collector;
+package com.stefanik.sfgg.userInterface.collector.grammarInformationCollector;
 
 import com.stefanik.sfgg.Configuration;
 import com.stefanik.sfgg.service.GrammarBuilder;
 import com.stefanik.sfgg.util.InvalidGrammarException;
 
+public class NonTerminalCollector extends SymbolCollector {
 
-public class TerminalCollector extends SymbolCollector {
-
-    private final static String SYMBOLS = "terminal symbols";
-    private final char CHARACTER = Configuration.TERMINAL_CHAR;
-    private final boolean HAS_STEPS= true;
+    private final static String SYMBOLS = "nonterminal symbols";
+    private final char CHARACTER = Configuration.NONTERMINAL_CHAR;
+    private final boolean HAS_STEPS = true;
 
 
     @Override
@@ -25,8 +24,8 @@ public class TerminalCollector extends SymbolCollector {
     }
 
     private void addAndShow(GrammarBuilder gb, String input) throws InvalidGrammarException {
-        gb.addTerminal(input);
-        showList(gb.getTerminals(), CHARACTER);
+        gb.addNonTerminal(input);
+        showList(gb.getNonTerminals(), CHARACTER);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.stefanik.sfgg.userInterface.collector;
+package com.stefanik.sfgg.userInterface.collector.grammarInformationCollector;
 
 import com.stefanik.sfgg.Configuration;
 import com.stefanik.sfgg.model.Transformation;
