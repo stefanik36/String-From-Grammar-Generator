@@ -8,7 +8,8 @@ Application generates strings using the formal grammar given by user.
 
 ## Examples:
 
-`L(G) = {a^n b^n c^n | n≥1}
+```
+L(G) = {a^n b^n c^n | n≥1}
 G(N,𝜮,P,S)
 𝜮={a,b,c}
 N={S,B}
@@ -17,5 +18,6 @@ P={
        S → aBSc | abc
        Ba → aB
        Bb → bb    
-}`
+}
+```
 
